@@ -1,0 +1,22 @@
+{
+  "build": {
+    "builder": "railpack",
+    "buildCommand": "npm install"
+  },
+  "start": {
+    "startCommand": "npm start"
+  },
+  "healthcheck": {
+    "url": "/api/health",
+    "interval": 30
+  },
+  "env": {
+    "PORT": "3000",
+    "DB_PATH": "data.sqlite"
+  },
+  "serverless": false,
+  "restartPolicy": {
+    "onFailure": true,
+    "maxRetries": 10
+  }
+}
