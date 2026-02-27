@@ -1,0 +1,19 @@
+{
+  "name": "smart-parking-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Smart Parking web app (dashboard + API) inspired by Smart Parking: Optimisation intelligente du stationnement urbain",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "sqlite3": "^5.1.7",
+    "socket.io": "^4.7.5"
+  }
+}

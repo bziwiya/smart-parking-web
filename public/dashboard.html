@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Parking | Tableau de bord</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="theme-light dashboard-page">
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand-link" href="/">
+        <span class="brand-mark">Smart Parking</span>
+        <span class="brand-sub">Plateforme de gestion</span>
+      </a>
+      <nav class="top-nav">
+        <a href="/">Accueil</a>
+        <a class="is-active" href="/dashboard.html">Tableau de bord</a>
+        <span id="wsBadge" class="status-pill offline">Temps reel : connexion...</span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <section class="hero-strip">
+      <h1>Centre de supervision du parking</h1>
+      <p>Visualisez chaque place en temps reel et pilotez la barriere depuis une interface claire.</p>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel panel-lot">
+        <div class="panel-head">
+          <div>
+            <h2>Plan des places</h2>
+            <p class="muted">Cliquez sur une place pour simuler le capteur.</p>
+          </div>
+          <div class="legend">
+            <span><i class="legend-dot free"></i>Libre</span>
+            <span><i class="legend-dot occupied"></i>Occupee</span>
+          </div>
+        </div>
+        <div id="spots" class="parking-map" aria-live="polite"></div>
+      </article>
+
+      <aside class="panel panel-side">
+        <h2>Etat en direct</h2>
+        <div class="metric-grid">
+          <div class="metric-card">
+            <span>Total places</span>
+            <strong id="kTotal">-</strong>
+          </div>
+          <div class="metric-card">
+            <span>Libres</span>
+            <strong id="kFree">-</strong>
+          </div>
+          <div class="metric-card">
+            <span>Occupees</span>
+            <strong id="kOcc">-</strong>
+          </div>
+          <div class="metric-card">
+            <span>Indication</span>
+            <strong id="kDisplay" data-tone="warn">-</strong>
+          </div>
+        </div>
+
+        <div class="utilization">
+          <div class="utilization-head">
+            <span>Taux d'occupation</span>
+            <strong id="kRateLabel">0%</strong>
+          </div>
+          <div class="progress">
+            <div id="occupancyBar" class="progress-fill"></div>
+          </div>
+          <p class="muted">Occupation actuelle : <span id="kRate" class="mono">0%</span></p>
+        </div>
+
+        <div class="gate-box">
+          <h3>Commande barriere</h3>
+          <p id="gateHint" class="muted">La recommandation apparait ici en temps reel.</p>
+          <div class="gate-info">
+            <div><span>Statut</span><strong id="gateStatus">-</strong></div>
+            <div><span>Mise a jour</span><strong id="gateUpdated" class="mono">-</strong></div>
+          </div>
+          <div class="button-row">
+            <button class="btn primary" id="btnOpen" type="button">Ouvrir</button>
+            <button class="btn ghost" id="btnClose" type="button">Fermer</button>
+            <button class="btn secondary" id="btnEntry" type="button">Simuler entree</button>
+            <button class="btn secondary" id="btnExit" type="button">Simuler sortie</button>
+          </div>
+        </div>
+      </aside>
+
+      <article class="panel panel-events">
+        <div class="panel-head">
+          <h2>Evenements recents</h2>
+          <button class="btn ghost" id="btnRefreshLog" type="button">Rafraichir</button>
+        </div>
+        <div id="events" class="event-list"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <div class="container">
+      <p class="muted">Systeme connecte en direct au parking et a la barriere (etat, controle, evenements).</p>
+    </div>
+  </footer>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/dashboard.js"></script>
+</body>
+</html>
